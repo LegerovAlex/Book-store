@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Books } from "./components/books/Books";
 import { Header } from "./components/header/Header";
+import { MainPage } from "./pages/MainPage";
 
 import "./styles/reset.scss";
 
@@ -10,7 +10,7 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/" element={<Books />} />
+          <Route path="/" element={<MainPage />} />
         </Routes>
       </div>
       ;

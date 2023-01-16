@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../store/store";
 import { Book } from "./book/Book";
 import { fetchBooksThunk } from "../../store/book-slice";
 import "./Books.scss";
+import { Title } from "../title/Title";
 
 export function Books() {
   const filteredBooks = useAppSelector((state) => state.books.books);
@@ -13,6 +14,7 @@ export function Books() {
   }, [dispatch]);
   return (
     <div className="container">
+      <Title name={"New Releases Books"} />
       <div className="books-list">
         {filteredBooks.map((book) => (
           <Book

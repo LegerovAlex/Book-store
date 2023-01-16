@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BASE_URL_API_BOOK } from "../variables/API/index";
+import { BASE_URL_API_BOOK } from "../variables/api";
 import { IBook } from "../components/books/book/Book";
 
 interface IinitialBooksState {

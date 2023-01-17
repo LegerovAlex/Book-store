@@ -13,7 +13,7 @@ export function Books() {
     dispatch(fetchBooksThunk());
   }, [dispatch]);
   return (
-    <div className="container">
+    <div className="container books">
       <Title name={"New Releases Books"} />
       <div className="books-list">
         {filteredBooks.map((book) => (

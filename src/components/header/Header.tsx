@@ -4,7 +4,7 @@ import { Search } from "../search/Search";
 import "./Header.scss";
 export function Header() {
   return (
-    <div className="header">
+    <div className="container header">
       <Logo />
       <Search />
       <Navigation />

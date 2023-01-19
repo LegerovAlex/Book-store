@@ -6,7 +6,7 @@ import "./Books.scss";
 import { Title } from "../title/Title";
 
 export function Books() {
-  const filteredBooks = useAppSelector((state) => state.books.books);
+  const { books, error, loading } = useAppSelector((state) => state.books);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -15,16 +15,19 @@ export function Books() {
   return (
     <div className="container books">
       <Title name={"New Releases Books"} />
+      {loading && <p>Loading....</p>}
       <div className="books-list">
-        {filteredBooks.map((book) => (
-          <Book
-            key={book.isbn13}
-            image={book.image}
-            title={book.title}
-            subtitle={book.subtitle}
-            price={book.price}
-          />
-        ))}
+        {books &&
+          books.map((book) => (
+            <Book
+              key={book.isbn13}
+              image={book.image}
+              title={book.title}
+              subtitle={book.subtitle}
+              price={book.price}
+            />
+          ))}
+        {error && <p>Some err: {error}</p>}
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useDebounce } from "../../hooks/debounce";
 import { useAppDispatch } from "../../store/store";
 import { fetchBooksSearchThunk, fetchBooksThunk } from "../../store/book-slice";
+
 import "./Search.scss";
 
 export function Search() {
@@ -18,7 +19,9 @@ export function Search() {
       dispatch(fetchBooksThunk());
       return;
     }
-    dispatch(fetchBooksSearchThunk(value));
+    if (value.length >= 3) {
+      dispatch(fetchBooksSearchThunk(value));
+    }
   }, [debounce, dispatch, value]);
   return (
     <div className="search">

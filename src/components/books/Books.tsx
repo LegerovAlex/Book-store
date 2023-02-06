@@ -14,22 +14,29 @@ export function Books() {
 
   return (
     <div className="container books">
-      <Title name={"New Releases Books"} />
-      {loading && <p>Loading....</p>}
-      <div className="books-list">
-        {books &&
-          books.map((book) => (
-            <Book
-              key={book.isbn13}
-              image={book.image}
-              title={book.title}
-              subtitle={book.subtitle}
-              price={book.price}
-              isbn13={book.isbn13}
-            />
-          ))}
-        {error && <p>Some err: {error}</p>}
-      </div>
+      {error && <p>Some err: {error}</p>}
+      {!loading ? (
+        <>
+          <Title name={"New Releases Books"} />
+          <div className="books-list">
+            {books &&
+              books.map((book) => (
+                <Book
+                  key={book.isbn13}
+                  image={book.image}
+                  title={book.title}
+                  subtitle={book.subtitle}
+                  price={book.price}
+                  isbn13={book.isbn13}
+                  quantity={book.quantity}
+                  liked={book.liked}
+                />
+              ))}
+          </div>
+        </>
+      ) : (
+        <p>Loading....</p>
+      )}
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 import "./Book.scss";
 
 interface IBook {
@@ -8,6 +9,8 @@ interface IBook {
   price: string;
   image: string;
   url?: string;
+  quantity: number;
+  liked: boolean;
 }
 
 export type { IBook };

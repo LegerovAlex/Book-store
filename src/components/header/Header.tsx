@@ -1,5 +1,5 @@
 import { Logo } from "../icons/logo/Logo";
-import { Navigation } from "../icons/nav-icons/Navigation";
+import { Navigation } from "../navigation/Navigation";
 import { Search } from "../search/Search";
 import "./Header.scss";
 export function Header() {

@@ -6,27 +6,6 @@ import {
 } from "../variables/api";
 import { IBook } from "../components/books/book/Book";
 import { IBookPage } from "../components/bookPage/BookPage";
-interface IinitialBooksState {
-  books: IBook[];
-  book: IBookPage;
-  loading: boolean;
-  error: null | string;
-  total: number;
-}
-
-const initialBooksState: IinitialBooksState = {
-  books: [],
-  book: {},
-  loading: false,
-  error: null,
-  total: 0,
-};
-
-type BooksThunk = {
-  error: string;
-  books: IBook[];
-  total: number;
-};
 
 export const fetchBooksThunk = createAsyncThunk(
   "books/fetchBooks",
@@ -57,7 +36,6 @@ export const fetchBookThunk = createAsyncThunk(
   async (isbn13: string | undefined, thunkAPI) => {
     try {
       const response = await fetch(`${URL_ID_API_BOOK}/${isbn13}`);
-      console.log(response);
       return await response.json();
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -65,10 +43,90 @@ export const fetchBookThunk = createAsyncThunk(
   }
 );
 
+type BooksThunk = {
+  error: string;
+  books: IBook[];
+  total: number;
+};
+interface IinitialBooksState {
+  books: IBook[];
+  busket: IBook[];
+  book: Partial<IBookPage>;
+  favourites: IBook[];
+  loading: boolean;
+  error: null | string;
+  total: number;
+}
+
+const initialBooksState: IinitialBooksState = {
+  books: [],
+  busket: [],
+  favourites: [],
+  book: {},
+  loading: false,
+  error: null,
+  total: 0,
+};
 const booksSlice = createSlice({
   name: "books",
   initialState: initialBooksState,
-  reducers: {},
+  reducers: {
+    addItem: (state, action: PayloadAction<any>) => {
+      const bookInBusket = state.busket.find(
+        (book) => book.isbn13 === action.payload.isbn13
+      );
+      if (bookInBusket) {
+        bookInBusket.quantity++;
+      } else {
+        state.busket.push({ ...action.payload, quantity: 1 });
+      }
+    },
+    addLike: (state, action: PayloadAction<any>) => {
+      const bookLiked = state.favourites.find(
+        (book) => book.isbn13 === action.payload.isbn13
+      );
+      if (bookLiked) {
+        bookLiked.liked = !bookLiked.liked;
+      } else {
+        state.favourites.push({ ...action.payload, liked: true });
+        console.log(action.payload);
+      }
+    },
+    incrementQuantity: (
+      state,
+      action: PayloadAction<{ isbn13: string | undefined }>
+    ) => {
+      const book = state.busket.find(
+        (book) => book.isbn13 === action.payload.isbn13
+      );
+      book!.quantity++;
+    },
+    decrementQuantity: (
+      state,
+      action: PayloadAction<{ isbn13: string | undefined }>
+    ) => {
+      const book = state.busket.find(
+        (book) => book.isbn13 === action.payload.isbn13
+      );
+      if (book?.quantity === 1) {
+        book.quantity = 1;
+      } else {
+        book!.quantity--;
+      }
+    },
+    removeItem: (
+      state,
+      action: PayloadAction<{ isbn13: string | undefined }>
+    ) => {
+      const removeItem = state.busket.filter(
+        (item) => item.isbn13 !== action.payload.isbn13
+      );
+      state.busket = removeItem;
+    },
+    deleteItem: (state) => {
+      state.busket = [];
+    },
+  },
   extraReducers(builder) {
     builder.addCase(fetchBooksThunk.pending, (state) => {
       state.loading = true;
@@ -79,7 +137,6 @@ const booksSlice = createSlice({
       (state, action: PayloadAction<BooksThunk>) => {
         state.loading = false;
         state.books = action.payload.books;
-        state.total = action.payload.total;
       }
     );
     builder.addCase(
@@ -98,6 +155,7 @@ const booksSlice = createSlice({
       (state, action: PayloadAction<BooksThunk>) => {
         state.loading = false;
         state.books = action.payload.books;
+        state.total = action.payload.total;
       }
     );
     builder.addCase(
@@ -113,7 +171,7 @@ const booksSlice = createSlice({
     });
     builder.addCase(
       fetchBookThunk.fulfilled,
-      (state, action: PayloadAction<object>) => {
+      (state, action: PayloadAction<IBookPage>) => {
         state.loading = false;
         state.book = action.payload;
       }
@@ -129,3 +187,12 @@ const booksSlice = createSlice({
 });
 
 export default booksSlice.reducer;
+
+export const {
+  addItem,
+  incrementQuantity,
+  decrementQuantity,
+  removeItem,
+  addLike,
+  deleteItem,
+} = booksSlice.actions;

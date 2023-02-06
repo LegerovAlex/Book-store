@@ -20,6 +20,7 @@
     line-height: 64px;
     color: #313037;
     margin-bottom: 40px;
+    margin-top: 40px;
   }
   &-features {
     display: flex;
@@ -28,6 +29,15 @@
     border-top: 1px solid #e7e7e7;
     border-bottom: 1px solid #e7e7e7;
     padding: 25px 5px 25px 0px;
+
+    &-fav {
+      width: 50px;
+      height: 50px;
+      background: azure;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     &-img {
       background: #d7e4fd;
@@ -46,6 +56,15 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 15px;
+    &__like {
+      color: black;
+      cursor: pointer;
+    }
+
+    &__like_liked {
+      color: red;
+      cursor: pointer;
+    }
     &__price {
       font-family: "Bebas Neue";
       font-style: normal;
@@ -80,18 +99,4 @@
       width: 300px;
     }
   }
-}
-
-.back-button {
-  background: #313037;
-  padding: 10px;
-  font-family: "Bebas Neue";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 24px;
-  text-align: center;
-  color: #ffffff;
-  margin-bottom: 30px;
-  cursor: pointer;
 }

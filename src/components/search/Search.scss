@@ -1,11 +1,20 @@
-.search input {
+.search-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border: 1px solid #e7e7e7;
   padding: 10px;
-  width: 550px;
+  width: 30vw;
+}
+
+.search input {
+  width: inherit;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 32px;
   color: #a8a8a8;
+  border: none;
+  outline: none;
 }

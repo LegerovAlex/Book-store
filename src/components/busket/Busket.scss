@@ -1,0 +1,68 @@
+.busket {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 70px 5px;
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom: 48px;
+    border-bottom: 1px solid #e7e7e7;
+    &-inner {
+      display: flex;
+      gap: 50px;
+    }
+    &-price {
+      display: flex;
+      gap: 20px;
+      &__total {
+        font-family: "Bebas Neue";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 60px;
+        color: #313037;
+        button {
+          width: 256px;
+          height: 56px;
+          background: #313037;
+          font-family: "Bebas Neue";
+          font-style: normal;
+          color: white;
+          font-weight: 700;
+          font-size: 24px;
+          line-height: 24px;
+          text-align: center;
+          letter-spacing: 0.05em;
+          cursor: pointer;
+        }
+      }
+    }
+    &-img {
+      background: #d7e4fd;
+      width: 256px;
+    }
+    img {
+      max-width: 150px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    &-icons {
+      display: flex;
+      gap: 45px;
+    }
+    &__title {
+      font-family: "Bebas Neue";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 32px;
+      color: #313037;
+      margin-bottom: 35px;
+    }
+  }
+}

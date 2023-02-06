@@ -4,6 +4,7 @@ import { useAppDispatch } from "../../store/store";
 import { fetchBooksSearchThunk, fetchBooksThunk } from "../../store/book-slice";
 
 import "./Search.scss";
+import { IconSearch } from "../icons/Icon/IconSearch";
 
 export function Search() {
   const dispatch = useAppDispatch();
@@ -26,7 +27,14 @@ export function Search() {
   return (
     <div className="search">
       <form>
-        <input placeholder={"Search"} value={value} onChange={changeHandler} />
+        <div className="search-items">
+          <input
+            placeholder={"Search"}
+            value={value}
+            onChange={changeHandler}
+          />
+          <IconSearch />
+        </div>
       </form>
     </div>
   );

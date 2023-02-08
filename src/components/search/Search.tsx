@@ -1,5 +1,5 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import { useDebounce } from "../../hooks/debounce";
+import { ChangeEvent, useState } from "react";
+import useDebounce from "../../hooks/debounce";
 import { useAppDispatch } from "../../store/store";
 import { fetchBooksSearchThunk, fetchBooksThunk } from "../../store/book-slice";
 
@@ -9,21 +9,18 @@ import { IconSearch } from "../icons/Icon/IconSearch";
 export function Search() {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState("");
-  const debounce = useDebounce(value);
+  const debounce = useDebounce();
 
   const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
-  };
-
-  useEffect(() => {
-    if (value === "") {
-      dispatch(fetchBooksThunk());
-      return;
-    }
-    if (value.length >= 3) {
+    debounce(() => {
+      if (value.length <= 1) {
+        dispatch(fetchBooksThunk());
+        return;
+      }
       dispatch(fetchBooksSearchThunk(value));
-    }
-  }, [debounce, dispatch, value]);
+    });
+  };
   return (
     <div className="search">
       <form>

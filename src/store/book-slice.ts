@@ -82,16 +82,30 @@ const booksSlice = createSlice({
       }
     },
     addLike: (state, action: PayloadAction<any>) => {
-      const bookLiked = state.favourites.find(
+      const bookLiked = state.books.find(
         (book) => book.isbn13 === action.payload.isbn13
       );
       if (bookLiked) {
-        bookLiked.liked = !bookLiked.liked;
-      } else {
-        state.favourites.push({ ...action.payload, liked: true });
-        console.log(action.payload);
+        bookLiked.liked = true;
+        state.favourites.push({ ...action.payload });
       }
     },
+    removeLike: (
+      state,
+      action: PayloadAction<{ isbn13: string | undefined }>
+    ) => {
+      const bookLiked = state.books.find(
+        (book) => book.isbn13 === action.payload.isbn13
+      );
+      const removeItem = state.favourites.filter(
+        (item) => item.isbn13 !== action.payload.isbn13
+      );
+      if (bookLiked) {
+        bookLiked!.liked = false;
+      }
+      state.favourites = removeItem;
+    },
+
     incrementQuantity: (
       state,
       action: PayloadAction<{ isbn13: string | undefined }>
@@ -195,4 +209,5 @@ export const {
   removeItem,
   addLike,
   deleteItem,
+  removeLike,
 } = booksSlice.actions;

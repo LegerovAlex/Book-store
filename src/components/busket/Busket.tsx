@@ -35,9 +35,11 @@ export function Busket() {
           {busket.map((book) => (
             <div key={book.isbn13} className="busket-list">
               <div className="busket-list-inner">
-                <div className="busket-list-img">
-                  <img src={book.image} alt="" />
-                </div>
+                <Link to={`/books/${book.isbn13}`}>
+                  <div className="busket-list-img">
+                    <img src={book.image} alt="" />
+                  </div>
+                </Link>
                 <div>
                   <h3 className="busket-list__title">{book.title}</h3>
                   <div className="busket-list-icons">

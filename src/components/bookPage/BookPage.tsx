@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { Link, useParams } from "react-router-dom";
-import { addLike, fetchBookThunk } from "../../store/book-slice";
+import { addLike, fetchBookThunk, removeLike } from "../../store/book-slice";
 import "./BookPage.scss";
 import { IconBack } from "../icons/Icon/IconBack";
 import { addItem } from "../../store/book-slice";
@@ -37,6 +37,21 @@ export function BookPage() {
 
   const { book, error, loading } = useAppSelector((state) => state.books);
 
+  const currentBook = useAppSelector((state) =>
+    state.books.books.find((book) => book.isbn13 === isbn13)
+  );
+
+  function toggleLike() {
+    if (currentBook!.liked) {
+      dispatch(removeLike({ isbn13 }));
+    } else {
+      dispatch(addLike(currentBook));
+    }
+  }
+  const isLiked = useAppSelector((state) =>
+    state.books.favourites.find((book) => book.isbn13 === isbn13)
+  );
+
   return (
     <div className="page container">
       {error && <p>something wrong ....</p>}
@@ -51,11 +66,11 @@ export function BookPage() {
               <div className="page-features-fav">
                 <p
                   className={
-                    book.liked
+                    Boolean(isLiked)
                       ? "page-box__like page-box__like_liked"
                       : "page-box__like"
                   }
-                  onClick={() => dispatch(addLike(book))}
+                  onClick={toggleLike}
                 >
                   ❤
                 </p>
@@ -71,7 +86,7 @@ export function BookPage() {
                 <div>Year: {book.year}</div>
               </div>
               <button
-                onClick={() => dispatch(addItem(book))}
+                onClick={() => dispatch(addItem(currentBook))}
                 className="page-box__button"
               >
                 add to cart

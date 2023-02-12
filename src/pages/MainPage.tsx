@@ -1,4 +1,4 @@
-import { Books } from "../components/books/Books";
+import { Books } from "../components/books/books/Books";
 
 export function MainPage() {
   return (

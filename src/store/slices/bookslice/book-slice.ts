@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IBook } from "../../../interface/book/book";
 import { IBookPage } from "../../../interface/bookPage/bookPage";
 import { fetchBookThunk } from "../../thunk/fetchBookThunk";
 import { fetchBooksThunk } from "../../thunk/fetchBooksThunk";

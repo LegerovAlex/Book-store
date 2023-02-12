@@ -1,0 +1,17 @@
+.navigation {
+  border-top: 1px solid rgba(231, 231, 231, 1);
+}
+.navigation-list {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 48px;
+  margin-bottom: 71px;
+}
+.navigation-button {
+  margin-right: 15px;
+  font-size: 1rem;
+  color: rgba(168, 168, 168, 1);
+}
+.navigation-button--active {
+  color: rgba(49, 48, 55, 1);
+}

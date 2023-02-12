@@ -1,62 +1,11 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-  URL_API_BOOK,
-  URL_SEARCH_API__BOOK,
-  URL_ID_API_BOOK,
-} from "../variables/api";
-import { IBook } from "../components/books/book/Book";
-import { IBookPage } from "../components/bookPage/BookPage";
-
-export const fetchBooksThunk = createAsyncThunk(
-  "books/fetchBooks",
-  async (_, thunkAPI) => {
-    try {
-      const response = await fetch(URL_API_BOOK);
-      return await response.json();
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
-export const fetchBooksSearchThunk = createAsyncThunk(
-  "books/SearchFetchBooks",
-  async (value: string, thunkAPI) => {
-    try {
-      const response = await fetch(`${URL_SEARCH_API__BOOK}/${value}`);
-      return await response.json();
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
-export const fetchBookThunk = createAsyncThunk(
-  "book/fetchBook",
-  async (isbn13: string | undefined, thunkAPI) => {
-    try {
-      const response = await fetch(`${URL_ID_API_BOOK}/${isbn13}`);
-      return await response.json();
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
-type BooksThunk = {
-  error: string;
-  books: IBook[];
-  total: number;
-};
-interface IinitialBooksState {
-  books: IBook[];
-  busket: IBook[];
-  book: Partial<IBookPage>;
-  favourites: IBook[];
-  loading: boolean;
-  error: null | string;
-  total: number;
-}
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IBook } from "../../../interface/book/book";
+import { IBookPage } from "../../../interface/bookPage/bookPage";
+import { fetchBookThunk } from "../../thunk/fetchBookThunk";
+import { fetchBooksThunk } from "../../thunk/fetchBooksThunk";
+import { fetchBooksSearchThunk } from "../../thunk/fetchBooksSearchThunk";
+import { IinitialBooksState } from "../../../interface/store/slices/book-slice";
+import { BooksThunk } from "../../../interface/store/slices/book-slice";
 
 const initialBooksState: IinitialBooksState = {
   books: [],
@@ -67,6 +16,7 @@ const initialBooksState: IinitialBooksState = {
   error: null,
   total: 0,
 };
+
 const booksSlice = createSlice({
   name: "books",
   initialState: initialBooksState,

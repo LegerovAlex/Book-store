@@ -1,9 +1,10 @@
 import { ChangeEvent, useState } from "react";
-import useDebounce from "../../hooks/debounce";
 import { useAppDispatch } from "../../store/store";
-import { fetchBooksSearchThunk, fetchBooksThunk } from "../../store/book-slice";
-import "./Search.scss";
+import useDebounce from "../../hooks/debounce";
+import { fetchBooksThunk } from "../../store/thunk/fetchBooksThunk";
+import { fetchBooksSearchThunk } from "../../store/thunk/fetchBooksSearchThunk";
 import { IconSearch } from "../icons/Icon/IconSearch";
+import "./Search.scss";
 
 export function Search() {
   const dispatch = useAppDispatch();

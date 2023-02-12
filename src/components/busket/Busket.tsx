@@ -1,15 +1,15 @@
-import { IconBack } from "../icons/Icon/IconBack";
-import { Title } from "../title/Title";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { Link } from "react-router-dom";
+import { IconBack } from "../icons/Icon/IconBack";
+import { Title } from "../title/Title";
+import { BsPlus } from "react-icons/bs";
+import { AiOutlineMinus, AiOutlineClose } from "react-icons/ai";
 import {
   deleteItem,
   incrementQuantity,
   removeItem,
-} from "../../store/book-slice";
-import { decrementQuantity } from "../../store/book-slice";
-import { BsPlus } from "react-icons/bs";
-import { AiOutlineMinus, AiOutlineClose } from "react-icons/ai";
+} from "../../store/slices/bookslice/book-slice";
+import { decrementQuantity } from "../../store/slices/bookslice/book-slice";
 import "./Busket.scss";
 
 export function Busket() {
@@ -43,27 +43,34 @@ export function Busket() {
                 <div>
                   <h3 className="busket-list__title">{book.title}</h3>
                   <div className="busket-list-icons">
-                    <AiOutlineMinus
-                      onClick={() =>
-                        dispatch(decrementQuantity({ isbn13: book.isbn13 }))
-                      }
-                    />
-                    <div>{book.quantity}</div>
-                    <BsPlus
-                      onClick={() =>
-                        dispatch(incrementQuantity({ isbn13: book.isbn13 }))
-                      }
-                    />
+                    <div>
+                      <AiOutlineMinus
+                        onClick={() =>
+                          dispatch(decrementQuantity({ isbn13: book.isbn13 }))
+                        }
+                      />
+                    </div>
+                    <p>{book.quantity}</p>
+                    <div>
+                      <BsPlus
+                        values="{cursor:pointer}"
+                        onClick={() =>
+                          dispatch(incrementQuantity({ isbn13: book.isbn13 }))
+                        }
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="busket-list-price">
+                <p>${Number(book.price.replace("$", "")) * book.quantity}</p>
                 <div>
-                  ${Number(book.price.replace("$", "")) * book.quantity}
+                  <AiOutlineClose
+                    onClick={() =>
+                      dispatch(removeItem({ isbn13: book.isbn13 }))
+                    }
+                  />
                 </div>
-                <AiOutlineClose
-                  onClick={() => dispatch(removeItem({ isbn13: book.isbn13 }))}
-                />
               </div>
             </div>
           ))}

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import { useSearchParams } from "react-router-dom";
 import { Book } from "./book/Book";
-import { fetchBooksSearchThunk, fetchBooksThunk } from "../../store/book-slice";
+import { fetchBooksThunk } from "../../store/thunk/fetchBooksThunk";
 import "./Books.scss";
 import { Title } from "../title/Title";
 import { Pagination } from "../pagination/Pagination";

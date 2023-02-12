@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../../store/store";
-import { logOut } from "../../../store/user-slice";
+import { logOut } from "../../../store/slices/userslice/user-slice";
 import { Link } from "react-router-dom";
 import { IconBack } from "../../icons/Icon/IconBack";
 import "./LogOut.scss";

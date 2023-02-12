@@ -1,5 +1,5 @@
-import { LogOut } from "../components/registration/logOut/LogOut";
-import { SignIn } from "../components/registration/signUp/SignIn";
+import { LogOut } from "../components/registration/logout/LogOut";
+import { SignIn } from "../components/registration/signin/SignIn";
 import { useAppSelector } from "../store/store";
 
 export function RegistrationPage() {

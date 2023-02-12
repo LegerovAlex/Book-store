@@ -1,7 +1,4 @@
-type ILogo = {
-  width?: number;
-  height?: number;
-};
+import { ILogo } from "../../../interface/logo/logo";
 
 export function Logo({ width = 138, height = 29 }: ILogo) {
   return (

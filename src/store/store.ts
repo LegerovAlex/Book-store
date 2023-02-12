@@ -1,5 +1,5 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import booksSlice from "./book-slice";
+import booksSlice from "./slices/bookslice/book-slice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import storage from "redux-persist/lib/storage";
 import {
@@ -12,7 +12,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import userSlice from "./user-slice";
+import userSlice from "./slices/userslice/user-slice";
 
 const persistConfig = {
   key: "root",

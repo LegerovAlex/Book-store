@@ -1,15 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-type IUser = {
-  name: string;
-  email: string;
-  password: string;
-  loggedIn: boolean;
-};
-
-interface IinitialUsersState {
-  user: null | IUser;
-}
+import {
+  IUser,
+  IinitialUsersState,
+} from "../../../interface/store/slices/user-slice";
 
 const initialUsersState: IinitialUsersState = {
   user: null,

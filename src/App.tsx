@@ -4,11 +4,11 @@ import { Footer } from "./components/footer/Footer";
 import { Header } from "./components/header/Header";
 import { MainPage } from "./pages/MainPage";
 import { NotFound } from "./components/notfound/NotFound";
-import "./styles/reset.scss";
 import { Busket } from "./components/busket/Busket";
 import { Favourite } from "./components/favourite/Favourite";
 import { Payment } from "./components/payment/Payment";
 import { RegistrationPage } from "./pages/RegistrationPage";
+import "./styles/reset.scss";
 
 function App() {
   return (

@@ -1,9 +1,9 @@
-import "./Favourite.scss";
 import { Link } from "react-router-dom";
-import { IconBack } from "../icons/Icon/IconBack";
 import { useAppDispatch, useAppSelector } from "../../store/store";
+import { IconBack } from "../icons/Icon/IconBack";
 import { Title } from "../title/Title";
-import { removeLike } from "../../store/book-slice";
+import { removeLike } from "../../store/slices/bookslice/book-slice";
+import "./Favourite.scss";
 
 export function Favourite() {
   const favourite = useAppSelector((state) => state.books.favourites);

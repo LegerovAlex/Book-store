@@ -1,30 +1,11 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../store/store";
 import { Link, useParams } from "react-router-dom";
-import { addLike, fetchBookThunk, removeLike } from "../../store/book-slice";
-import "./BookPage.scss";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import { addLike, removeLike } from "../../store/slices/bookslice/book-slice";
+import { fetchBookThunk } from "../../store/thunk/fetchBookThunk";
 import { IconBack } from "../icons/Icon/IconBack";
-import { addItem } from "../../store/book-slice";
-
-interface IBookPage {
-  title: string;
-  subtitle: string;
-  authors: string;
-  publisher: string;
-  isbn10?: string;
-  isbn13: string;
-  pages: string;
-  year: string;
-  rating: string;
-  desc: string;
-  price: string;
-  image: string;
-  url?: string;
-  quantity: number;
-  liked: boolean;
-}
-
-export type { IBookPage };
+import { addItem } from "../../store/slices/bookslice/book-slice";
+import "./BookPage.scss";
 
 export function BookPage() {
   const { isbn13 } = useParams();

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch } from "../../../store/store";
-import { login } from "../../../store/user-slice";
+import { login } from "../../../store/slices/userslice/user-slice";
 import { Link } from "react-router-dom";
 import { IconBack } from "../../icons/Icon/IconBack";
 import "./SignIn.scss";

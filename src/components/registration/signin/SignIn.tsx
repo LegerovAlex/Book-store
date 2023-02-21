@@ -7,22 +7,29 @@ import "./SignIn.scss";
 
 export function SignIn() {
   const dispatch = useAppDispatch();
-
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [flag, setFlag] = useState(false);
 
   function handleFormSubmit(event: any) {
     event.preventDefault();
 
-    dispatch(
-      login({
-        name: name,
-        email: email,
-        password: password,
-        loggedIn: true,
-      })
-    );
+    if (!password || !email) {
+      setFlag(true);
+    }
+    let pass = localStorage.getItem("password")!.replace(/"/g, "");
+    let mail = localStorage.getItem("email")!.replace(/"/g, "");
+    if (password !== pass || email !== mail) {
+      setFlag(true);
+    } else {
+      dispatch(
+        login({
+          email: email,
+          password: password,
+          loggedIn: true,
+        })
+      );
+    }
   }
 
   return (
@@ -32,16 +39,11 @@ export function SignIn() {
       </Link>
       <form onSubmit={handleFormSubmit} className="registrate-form">
         <div className="registrate-form__title">Sign In</div>
-        <div className="registrate-form-input">
-          <label>Name </label>
-          <input
-            type="text"
-            placeholder="Your name"
-            name="name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
-        </div>
+        {flag && (
+          <div style={{ color: "blue", textAlign: "center" }}>
+            Incorrect login or password.
+          </div>
+        )}
         <div className="registrate-form-input">
           <label>Email </label>
           <input
@@ -62,6 +64,9 @@ export function SignIn() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
+        <Link to={`/registration`}>
+          <p className="registrate-form__text">Don't have an account?</p>
+        </Link>
         <button type="submit" className="registrate-form-btn">
           Sign In
         </button>

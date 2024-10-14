@@ -1,0 +1,16 @@
+.svg {
+  position: relative;
+  &-active {
+    position: absolute;
+    top: 0px;
+    right: -2px;
+
+    display: block;
+    width: 10px;
+    height: 10px;
+
+    border-radius: 10px;
+    border: 2px solid white;
+    background-color: red;
+  }
+}

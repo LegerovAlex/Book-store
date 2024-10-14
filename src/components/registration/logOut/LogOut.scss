@@ -1,0 +1,17 @@
+.logout {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: space-between;
+
+  &__btn {
+    width: 300px;
+    background-color: rgba(49, 48, 55, 1);
+    color: rgba(255, 255, 255, 1);
+    padding: 12px 0;
+    font-size: 1.5rem;
+    font-family: "Bebas Neue";
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,104 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  padding: 72px 5px 72px 5px;
+
+  &__description {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 32px;
+    color: #313037;
+  }
+
+  &__title {
+    font-family: "Bebas Neue";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 64px;
+    color: #313037;
+    margin-bottom: 40px;
+    margin-top: 40px;
+  }
+  &-features {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 72px;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 25px 5px 25px 5px;
+    flex-wrap: wrap;
+
+    &-fav {
+      width: 50px;
+      height: 50px;
+      background: azure;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &-img {
+      background: #d7e4fd;
+      width: 500px;
+    }
+    img {
+      max-width: 300px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+    &__like {
+      color: black;
+      cursor: pointer;
+    }
+
+    &__like_liked {
+      color: rgb(25, 134, 243);
+      cursor: pointer;
+    }
+    &__price {
+      font-family: "Bebas Neue";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 60px;
+      color: #313037;
+      margin-bottom: 10px;
+    }
+    &__info {
+      margin-bottom: 60px;
+      div {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 32px;
+        color: #a8a8a8;
+      }
+    }
+
+    &__button {
+      background: #313037;
+      padding: 10px;
+      font-family: "Bebas Neue";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 24px;
+      text-align: center;
+      color: #ffffff;
+      width: 300px;
+      cursor: pointer;
+    }
+  }
+}
